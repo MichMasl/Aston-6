@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import ru.mihmas.aston_6.R
 import ru.mihmas.aston_6.presentation.recyclerview_adapter.ContactListAdapter
@@ -32,6 +34,11 @@ class ContactListFragment : Fragment() {
     private fun setupRecyclerView(view: View) {
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.adapter = adapter
+        val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
+        ResourcesCompat.getDrawable(resources, R.drawable.divider_drawable, null)?.let {
+            drawable -> dividerItemDecoration.setDrawable(drawable)
+        }
+        recyclerView.addItemDecoration(dividerItemDecoration)
     }
 
     private fun setupViewModel() {
